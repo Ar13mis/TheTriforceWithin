@@ -6,6 +6,9 @@
 #include <sfml/Graphics.hpp>
 #include "Link.h"
 
+#include <thread>
+#include <chrono>
+
 const int windowX = 800;
 const int windowY = 600;
 
@@ -33,19 +36,36 @@ int main()
 		{
 		case sf::Event::KeyPressed:
 			if (event.key.code == sf::Keyboard::Up)
+			{
 				source.y = Up;
+				source.x++;
+			}
 			else if (event.key.code == sf::Keyboard::Right)
+			{
 				source.y = Right;
+				source.x++;
+			}
 			else if (event.key.code == sf::Keyboard::Down)
+			{
 				source.y = Down;
+				source.x++;
+			}
 			else if (event.key.code == sf::Keyboard::Left)
+			{
 				source.y = Left;
+				source.x++;
+			}
 			break;
 		}
 
+		//std::this_thread::sleep_for(std::chrono::seconds(1));
+
 		mSprite = spriteLink.getSprite();
-		mSprite.setTextureRect(sf::IntRect(source.x * 32, source.y * 32, 24, 32));
+		mSprite.setTextureRect(sf::IntRect(source.x * 24, source.y * 32, 24, 32));
 		spriteLink.setSprite(mSprite);
+
+		if (source.x >= spriteLink.getTexture().getSize().x)
+			source.x = 0;
 
 		//clear the window
 		window.clear();
