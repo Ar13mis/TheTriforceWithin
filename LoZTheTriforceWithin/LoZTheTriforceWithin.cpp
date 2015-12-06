@@ -5,24 +5,24 @@
 #include "iostream"
 #include <sfml/Graphics.hpp>
 #include "Link.h"
-
-#include <thread>
-#include <chrono>
+#include "Movement.h"
 
 const int windowX = 800;
 const int windowY = 600;
 
 int main()
 {
-
-	enum direction { Up, Right, Down, Left};
-	sf::Vector2i source(0, Up);
-
+	//create a character
 	Link spriteLink("Jake");
 	sf::Sprite mSprite;
 
+	//set the source vector for the animation
+	Link setSource(sf::Vector2i(source));
+
+	//create the window
 	sf::RenderWindow window(sf::VideoMode(windowX, windowY), "The Triforce Within");
 
+	///GAME LOOP
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -32,49 +32,25 @@ int main()
 				window.close();
 		}
 
-		switch (event.type)
-		{
-		case sf::Event::KeyPressed:
-			if (event.key.code == sf::Keyboard::Up)
-			{
-				source.y = Up;
-				source.x++;
-			}
-			else if (event.key.code == sf::Keyboard::Right)
-			{
-				source.y = Right;
-				source.x++;
-			}
-			else if (event.key.code == sf::Keyboard::Down)
-			{
-				source.y = Down;
-				source.x++;
-			}
-			else if (event.key.code == sf::Keyboard::Left)
-			{
-				source.y = Left;
-				source.x++;
-			}
-			break;
-		}
+		//move with the arrow keys (Movement.cpp)
+		MovingAround(spriteLink);
 
-		//std::this_thread::sleep_for(std::chrono::seconds(1));
+		//check if you are on the edge of the screen (Movement.cpp)
+		DecideEdges(spriteLink, windowX, windowY);
 
-		mSprite = spriteLink.getSprite();
-		mSprite.setTextureRect(sf::IntRect(source.x * 24, source.y * 32, 24, 32));
-		spriteLink.setSprite(mSprite);
+		//animate the walking of the sprite
+		AnimateWalk(spriteLink);
 
-		if (source.x >= spriteLink.getTexture().getSize().x)
-			source.x = 0;
-
-		//clear the window
-		window.clear();
+		//std::cout << spriteLink.getSprite().getPosition().x << spriteLink.getSprite().getPosition().y << std::endl;
 
 		//draw the things (window.draw(stuff to draw here))
 		window.draw(spriteLink.getSprite());
 
 		//display the window
 		window.display();
+
+		//clear the window
+		window.clear();
 	}
 
 	return 0;

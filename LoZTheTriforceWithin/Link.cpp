@@ -9,6 +9,23 @@ Link::Link()
 	: mName("Link")
 	, mHealth(10.f)
 {
+	//set the sprite position
+	mSprite.setPosition(10, 10);
+
+	if (!mTexture.loadFromFile(mTexturePath))
+	{
+		//error loading texture
+		std::cout << "Error loading texture link" << std::endl;
+	}
+
+	//set the texture and size of the sprite
+	mSprite.setTexture(mTexture);
+	mSprite.scale(sf::Vector2f(2.f, 2.f));
+
+	//declare variables for animating the sprite
+	enum direction { Up, Right, Down, Left };
+	mSource.x = 0;
+	mSource.y = Up;
 }
 
 //main constructor
@@ -16,14 +33,15 @@ Link::Link(std::string name)
 	: mName(name)
 	, mHealth(10.f)
 {
+	//set the sprite position
 	mSprite.setPosition(10, 10);
 
 	if (!mTexture.loadFromFile(mTexturePath)) 
 	{
-		//error loading texturesa
+		//error loading texture
 		std::cout << "Error loading texture link" << std::endl;
 	}
-
+	//set the sprite texture and scale
 	mSprite.setTexture(mTexture);
 	mSprite.scale(sf::Vector2f(2.f, 2.f));
 }
@@ -81,4 +99,14 @@ void Link::setSprite(sf::Sprite sprite)
 sf::Sprite Link::getSprite()
 {
 	return mSprite;
+}
+
+void Link::setSource(sf::Vector2i source)
+{
+	mSource = source;
+}
+
+sf::Vector2i Link::getSource()
+{
+	return mSource;
 }

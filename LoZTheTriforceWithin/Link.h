@@ -21,6 +21,9 @@ public:
 
 	void setSprite(sf::Sprite sprite);
 	sf::Sprite getSprite();
+
+	void setSource(sf::Vector2i source);
+	sf::Vector2i getSource();
 	//end getters and setters
 
 protected:
@@ -29,5 +32,6 @@ protected:
 	std::string mTexturePath = "Images/Link1.png";
 	sf::Texture mTexture;
 	sf::Sprite mSprite;
+	sf::Vector2i mSource;
 };
 
