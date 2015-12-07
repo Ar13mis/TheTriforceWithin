@@ -41,8 +41,10 @@ void DecideEdges(Link &character, int windowX, int windowY)
 	character.setSprite(mSprite);
 }
 
+//Function for walking animation
 void AnimateWalk(Link &character)
 {
+	//declare local variables for texture and source
 	sf::Texture mTexture = character.getTexture();
 	sf::Vector2i mSource = character.getSource();
 
@@ -54,6 +56,11 @@ void AnimateWalk(Link &character)
 		mSource.y = 2;
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		mSource.y = 3;
+	else
+	{
+		//mSource.y = 2;
+		mSource.x = 1;
+	}
 
 	mSource.x++;
 
@@ -62,5 +69,6 @@ void AnimateWalk(Link &character)
 
 	sf::Sprite mSprite = character.getSprite();
 	mSprite.setTextureRect(sf::IntRect(mSource.x * 24, mSource.y * 32, 24, 32));
+	character.setSource(mSource);
 	character.setSprite(mSprite);
 }

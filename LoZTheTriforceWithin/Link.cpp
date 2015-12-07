@@ -26,6 +26,8 @@ Link::Link()
 	enum direction { Up, Right, Down, Left };
 	mSource.x = 0;
 	mSource.y = Up;
+
+	setSource(mSource);
 }
 
 //main constructor
@@ -44,6 +46,13 @@ Link::Link(std::string name)
 	//set the sprite texture and scale
 	mSprite.setTexture(mTexture);
 	mSprite.scale(sf::Vector2f(2.f, 2.f));
+
+	//declare variables for animating the sprite
+	enum direction { Up, Right, Down, Left };
+	mSource.x = 0;
+	mSource.y = Up;
+
+	setSource(mSource);
 }
 
 //default destructor
@@ -101,11 +110,13 @@ sf::Sprite Link::getSprite()
 	return mSprite;
 }
 
+//set source
 void Link::setSource(sf::Vector2i source)
 {
 	mSource = source;
 }
 
+//get source
 sf::Vector2i Link::getSource()
 {
 	return mSource;
