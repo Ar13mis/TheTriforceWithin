@@ -1,5 +1,5 @@
 // LoZTheTriforceWithin.cpp : Defines the entry point for the console application.
-//
+// The Main Class For Game Loop
 
 #include "stdafx.h"
 #include "iostream"

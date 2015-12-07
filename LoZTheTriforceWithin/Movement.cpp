@@ -1,3 +1,5 @@
+//The Movement C++ File
+
 #include "stdafx.h"
 #include "Movement.h"
 #include "Link.h"
@@ -48,6 +50,7 @@ void AnimateWalk(Link &character)
 	sf::Texture mTexture = character.getTexture();
 	sf::Vector2i mSource = character.getSource();
 
+	//set the look direction of the sprite
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		mSource.y = 0;
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -56,19 +59,28 @@ void AnimateWalk(Link &character)
 		mSource.y = 2;
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		mSource.y = 3;
+	//stop moving
 	else
 	{
-		//mSource.y = 2;
-		mSource.x = 1;
+		mSource.x = 0;
 	}
 
+	//increment walk
 	mSource.x++;
 
+	//reset the walk
 	if ((mSource.x) >= 12)
 		mSource.x = 1;
 
+	//get the sprite
 	sf::Sprite mSprite = character.getSprite();
+
+	//crop the sprite
 	mSprite.setTextureRect(sf::IntRect(mSource.x * 24, mSource.y * 32, 24, 32));
+
+	//push back source for reference
 	character.setSource(mSource);
+
+	//push back sprite
 	character.setSprite(mSprite);
 }

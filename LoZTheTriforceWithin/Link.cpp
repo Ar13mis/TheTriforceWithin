@@ -1,3 +1,5 @@
+//The Link C++ Class File
+
 #include "stdafx.h"
 #include "iostream"
 #include "Link.h"
