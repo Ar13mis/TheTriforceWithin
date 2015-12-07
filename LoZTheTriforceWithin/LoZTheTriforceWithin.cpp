@@ -16,13 +16,6 @@ int main()
 	Link spriteLink("Jake");
 	sf::Sprite mSprite;
 
-	/*enum myDirection { Up, Right, Down, Left};
-	int Frame = 1;
-	sf::Vector2i source (Frame, myDirection);*/
-
-	//set the source vector for the animation
-	//Link setSource(sf::Vector2i(source));
-
 	//create the window
 	sf::RenderWindow window(sf::VideoMode(windowX, windowY), "The Triforce Within");
 
@@ -44,8 +37,6 @@ int main()
 
 		//animate the walking of the sprite
 		AnimateWalk(spriteLink);
-
-		std::cout << spriteLink.getSprite().getPosition().x << spriteLink.getSprite().getPosition().y << std::endl;
 
 		//draw the things (window.draw(stuff to draw here))
 		window.draw(spriteLink.getSprite());
