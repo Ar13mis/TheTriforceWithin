@@ -12,15 +12,18 @@ void MovingAround(Link &character)
 	//get the information from my character class
 	sf::Sprite mSprite = character.getSprite();
 
+	//declare variable for speed
+	float speed = 1.f;
+
 	//move with the arrow keys
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))		
-		mSprite.move(0, -1);
+		mSprite.move(0, -speed);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		mSprite.move(1, 0);
+		mSprite.move(speed, 0);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		mSprite.move(0, 1);
+		mSprite.move(0, speed);
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		mSprite.move(-1, 0);
+		mSprite.move(-speed, 0);
 
 	//push the sprite information back to the class
 	character.setSprite(mSprite);
