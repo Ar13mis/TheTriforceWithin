@@ -8,7 +8,9 @@
 #define MOVEMENT_H_
 
 void MovingAround(Link &character);
-void DecideEdges(Link &character, int windowX, int windowY);
+void DecideEdges(Link &character, sf::Vector2i &coords, int windowX, int windowY);
 void AnimateWalk(Link &character);
+
+bool CollisionDetection(sf::Sprite sprite1, sf::Sprite sprite2);
 
 #endif
