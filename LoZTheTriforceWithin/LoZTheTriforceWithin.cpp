@@ -58,18 +58,14 @@ int main()
 		MovingAround(spriteLink);
 
 		//check if you are on the edge of the screen (Movement.cpp)
-		DecideEdges(spriteLink, coords, windowX, windowY);
+		DecideEdges(spriteLink, windowX, windowY);
 
 		//animate the walking of the sprite
 		AnimateWalk(spriteLink);
 
 		//check for collision
-		bool throneHit = CollisionDetection(spriteLink.getSprite(), throne);
 
-		if (throneHit == true)
-		{
-			std::cout << "You are the King of the Iron Throne." << std::endl;
-		}
+		std::cout << std::to_string(spriteLink.getCoords().x) + ", " + std::to_string(spriteLink.getCoords().y)<< std::endl;
 
 		//draw the things (window.draw(stuff to draw here))
 		window.draw(floorSprite);

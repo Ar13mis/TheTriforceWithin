@@ -39,22 +39,22 @@ void DecideEdges(Link &character, int windowX, int windowY)
 	//determine if you should be able to go outside the screen or not
 	if (mPosition.x > windowX - 48)
 	{
-		mSprite.setPosition(windowX - 48, mPosition.y);
+		mSprite.setPosition(0, mPosition.y);
 		mCoords.x += 1;
 	}
 	else if (mPosition.x < 0)
 	{
-		mSprite.setPosition(0, mPosition.y);
+		mSprite.setPosition(windowX - 48, mPosition.y);
 		mCoords.x -= 1;
 	}
 	else if (mPosition.y > windowY - 64)
 	{
-		mSprite.setPosition(mPosition.x, windowY - 64);
+		mSprite.setPosition(mPosition.x, 0);
 		mCoords.y += 1;
 	}
 	else if (mPosition.y < 0)
 	{
-		mSprite.setPosition(mPosition.x, 0);
+		mSprite.setPosition(mPosition.x, windowY - 64);
 		mCoords.y -= 1;
 	}
 
