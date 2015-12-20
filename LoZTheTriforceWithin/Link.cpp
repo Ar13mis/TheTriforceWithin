@@ -123,3 +123,14 @@ sf::Vector2i Link::getSource()
 {
 	return mSource;
 }
+
+//set coords
+void Link::setCoords(sf::Vector2i coords)
+{
+	mCoords = coords;
+}
+
+sf::Vector2i Link::getCoords()
+{
+	return mCoords;
+}

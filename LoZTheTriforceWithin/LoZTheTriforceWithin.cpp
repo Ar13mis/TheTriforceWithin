@@ -64,7 +64,7 @@ int main()
 		AnimateWalk(spriteLink);
 
 		//check for collision
-		bool throneHit = CollisionDetection(spriteLink.getSprite, throne);
+		bool throneHit = CollisionDetection(spriteLink.getSprite(), throne);
 
 		if (throneHit == true)
 		{

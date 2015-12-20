@@ -29,36 +29,38 @@ void MovingAround(Link &character)
 	character.setSprite(mSprite);
 }
 
-void DecideEdges(Link &character, sf::Vector2i &coords, int windowX, int windowY)
+void DecideEdges(Link &character, int windowX, int windowY)
 {
 	//get the information from my character class
 	sf::Sprite mSprite = character.getSprite();
 	sf::Vector2f mPosition = mSprite.getPosition();
+	sf::Vector2i mCoords = character.getCoords();
 
 	//determine if you should be able to go outside the screen or not
 	if (mPosition.x > windowX - 48)
 	{
 		mSprite.setPosition(windowX - 48, mPosition.y);
-		coords.x += 1;
+		mCoords.x += 1;
 	}
 	else if (mPosition.x < 0)
 	{
 		mSprite.setPosition(0, mPosition.y);
-		coords.x -= 1;
+		mCoords.x -= 1;
 	}
 	else if (mPosition.y > windowY - 64)
 	{
 		mSprite.setPosition(mPosition.x, windowY - 64);
-		coords.y += 1;
+		mCoords.y += 1;
 	}
 	else if (mPosition.y < 0)
 	{
 		mSprite.setPosition(mPosition.x, 0);
-		coords.y -= 1;
+		mCoords.y -= 1;
 	}
 
 	//push the sprite information to the class
 	character.setSprite(mSprite);
+	character.setCoords(mCoords);
 }
 
 //Function for walking animation
@@ -113,7 +115,7 @@ void AnimateWalk(Link &character)
 //Function for collision detection
 bool CollisionDetection(sf::Sprite sprite1, sf::Sprite sprite2)
 {
-	if (sprite1.getGlobalBounds().intersects(sprite2.getGlobalBounds))
+	if (sprite1.getGlobalBounds().intersects(sprite2.getGlobalBounds()))
 	{
 		return true;
 	}

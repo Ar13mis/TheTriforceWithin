@@ -26,6 +26,9 @@ public:
 
 	void setSource(sf::Vector2i source);
 	sf::Vector2i getSource();
+
+	void setCoords(sf::Vector2i coords);
+	sf::Vector2i getCoords();
 	//end getters and setters
 
 protected:
@@ -35,5 +38,6 @@ protected:
 	sf::Texture mTexture;
 	sf::Sprite mSprite;
 	sf::Vector2i mSource;
+	sf::Vector2i mCoords;
 };
 
